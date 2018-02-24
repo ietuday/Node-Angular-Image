@@ -4,11 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "start": "run-s build start:server",
+    "start:server": "node src/server/index.js",
+    "watch:client": "ng serve --proxy-config proxy.conf.json --open",
+    "watch:server": "nodemon src/server/index.js",
+    "watch": "run-p watch:*",
+    "sample": "node src/server/data/seed-db.js",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +25,17 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
     "core-js": "^2.4.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "express-jwt": "^5.3.0",
+    "jquery": "^3.3.1",
+    "jsonwebtoken": "^7.4.1",
+    "mongodb": "^2.2.26",
+    "ng-semantic": "^1.1.13",
+    "npm-run-all": "^4.0.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
